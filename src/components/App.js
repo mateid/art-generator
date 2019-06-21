@@ -17,7 +17,7 @@ export default class App extends Component {
 
   handleClick() {
     this.setState({
-      renderFunction: randomCircles
+      renderFunction: tiledLines
     })
   }
 

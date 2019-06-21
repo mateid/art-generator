@@ -9,11 +9,11 @@ export default class Canvas extends Component {
 
   renderScene() {
     const ctx = this.canvas.current.getContext('2d')
-    this.props.render(
+    setTimeout(() => this.props.render(
       ctx,
       this.canvas.current.width,
       this.canvas.current.height
-    )
+    ), 0)
   }
 
   componentDidMount() {
