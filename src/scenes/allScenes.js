@@ -1,8 +1,8 @@
 import * as scenes from './index'
 
-export default {
-  'Cubic Disarray': scenes.cubicDisarray,
-  'Tiled Lines': scenes.tiledLines,
-  'Random Circles': scenes.randomCircles,
-  'Random Lines': scenes.randomLines
-}
+export default [
+  { name: 'Cubic Disarray', renderer: scenes.cubicDisarray },
+  { name: 'Tiled Lines', renderer: scenes.tiledLines },
+  { name: 'Random Circles', renderer: scenes.randomCircles },
+  { name: 'Random Lines', renderer: scenes.randomLines }
+]

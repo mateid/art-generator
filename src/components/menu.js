@@ -8,19 +8,18 @@ import {
 import allScenes from '../scenes/allScenes'
 import './menu.scss'
 
-const Presets = props => {
-  console.log(props.onClick)
-  const presets = []
-  for (let scene in allScenes) {
-    presets.push(
-      <DropdownItem key={scene} onClick={() => props.onClick(allScenes[scene])}>
-        {scene}
+const Presets = props => (
+  <>
+    {allScenes.map(scene => (
+      <DropdownItem
+        key={scene.name}
+        onClick={() => props.onClick(scene.renderer)}
+      >
+        {scene.name}
       </DropdownItem>
-    )
-  }
-
-  return <>{presets}</>
-}
+    ))}
+  </>
+)
 
 const Menu = props => {
   const [isOpen, toggle] = useState(false)
