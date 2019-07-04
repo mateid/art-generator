@@ -7,13 +7,25 @@ export default class Canvas extends Component {
     this.canvas = React.createRef()
   }
 
+  clear(ctx) {
+    ctx.save()
+    ctx.setTransform(1, 0, 0, 1, 0, 0)
+    ctx.clearRect(0, 0, this.canvas.current.width, this.canvas.current.height)
+    ctx.restore()
+  }
+
   renderScene() {
     const ctx = this.canvas.current.getContext('2d')
-    setTimeout(() => this.props.render(
-      ctx,
-      this.canvas.current.width,
-      this.canvas.current.height
-    ), 0)
+    this.clear(ctx)
+    setTimeout(
+      () =>
+        this.props.render(
+          ctx,
+          this.canvas.current.width,
+          this.canvas.current.height
+        ),
+      0
+    )
   }
 
   componentDidMount() {
@@ -25,7 +37,7 @@ export default class Canvas extends Component {
     ctx.scale(dpr, dpr)
   }
 
-  componentDidUpdate(prevProps) {
+  componentDidUpdate() {
     this.renderScene()
   }
 

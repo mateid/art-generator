@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import './App.css'
 import Canvas from './canvas'
 import Menu from './menu'
-import { cubicDisarray, tiledLines, randomCircles, randomLines } from '../scenes'
 
 export default class App extends Component {
   constructor(props) {
@@ -15,9 +14,9 @@ export default class App extends Component {
     this.handleClick = this.handleClick.bind(this)
   }
 
-  handleClick() {
+  handleClick(scene) {
     this.setState({
-      renderFunction: tiledLines
+      renderFunction: scene
     })
   }
 
