@@ -1,12 +1,13 @@
 import { randomGray, randomColor, randomInt } from '../generators/primitives'
 
 const draw = (ctx, x, y, side, width, height) => {
-  const leftToRight = Math.random() >= 0.5 && x > width / 4
+  const leftToRight = Math.random() >= 0.5
 
   ctx.beginPath()
   ctx.lineCap = 'square'
   ctx.lineWidth = 1
   ctx.strokeStyle = Math.random() > 0.99 ? randomColor() : randomGray(200)
+
   if (leftToRight) {
     ctx.moveTo(x, y)
     ctx.lineTo(x + side, y + side)
