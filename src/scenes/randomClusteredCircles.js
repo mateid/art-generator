@@ -24,8 +24,6 @@ const render = (ctx, width, height) => {
   for (let i = 0; i < clusters; i++) {
     const  [x, y ] = [randomInt(width), randomInt(height)]
 
-    console.log(x, y)
-
     for (let i = 0; i < maxCircles; i++) {
       draw(
         ctx,

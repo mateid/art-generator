@@ -7,7 +7,7 @@ import {
   DropdownItem
 } from 'reactstrap'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faSave } from '@fortawesome/free-solid-svg-icons'
+import { faSave, faCog } from '@fortawesome/free-solid-svg-icons'
 import allScenes from '../scenes/allScenes'
 import './menu.scss'
 
@@ -28,12 +28,20 @@ const Saved = () => <DropdownItem disabled>{'- -'}</DropdownItem>
 
 const Menu = props => {
   const [isOpen, toggle] = useState(false)
+
   return (
     <div className="main-menu">
-      <Button className={'mx-1'}>
-        <FontAwesomeIcon icon={faSave} />
+      <Button className={'mx-1'} onClick={props.onPrefsClick}>
+        <FontAwesomeIcon icon={faCog} />
       </Button>
-      <ButtonDropdown isOpen={isOpen} toggle={() => toggle(!isOpen)} className={'mx-1'}>
+      <Button className={'mx-1'}>
+        <FontAwesomeIcon icon={faSave} onClick={props.onSaveClick} />
+      </Button>
+      <ButtonDropdown
+        isOpen={isOpen}
+        toggle={() => toggle(!isOpen)}
+        className={'mx-1'}
+      >
         <DropdownToggle caret>Select a Scene</DropdownToggle>
         <DropdownMenu>
           <DropdownItem header>Preset Scenes</DropdownItem>

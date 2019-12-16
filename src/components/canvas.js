@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import {UserConsumer} from '../contexts/userContext';
 import './canvas.scss'
 
 export default class Canvas extends Component {
@@ -43,9 +44,13 @@ export default class Canvas extends Component {
 
   render() {
     return (
-      <div className="frame">
-        <canvas ref={this.canvas} className="main-canvas" />
-      </div>
+      <UserConsumer>
+        {props => 
+            <div className={props.frame ? 'frame' : ''}>
+              <canvas ref={this.canvas} className="main-canvas" />
+            </div>
+      }
+      </UserConsumer>
     )
   }
 }
