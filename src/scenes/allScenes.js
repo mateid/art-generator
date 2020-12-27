@@ -1,9 +1,9 @@
 import * as scenes from './index'
 
 export default [
-  { name: 'Cubic Disarray', renderer: scenes.cubicDisarray },
-  { name: 'Tiled Lines', renderer: scenes.tiledLines },
-  { name: 'Random Circles', renderer: scenes.randomCircles },
-  { name: 'Random Clustered Circles', renderer: scenes.randomClusteredCircles },
-  { name: 'Random Lines', renderer: scenes.randomLines }
+  { name: 'Cubic Disarray', renderer: new scenes.cubicDisarray() },
+  { name: 'Tiled Lines', renderer: new scenes.tiledLines() },
+  { name: 'Random Circles', renderer: new scenes.randomCircles() },
+  { name: 'Random Clustered Circles', renderer: new scenes.randomClusteredCircles() },
+  { name: 'Random Lines', renderer: new scenes.randomLines() }
 ]

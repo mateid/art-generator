@@ -1,15 +1,18 @@
 import React, { useRef, useEffect } from 'react'
-import {UserConsumer} from '../contexts/userContext';
+import { UserConsumer } from '../contexts/userContext';
 import './canvas.scss'
 
-const Canvas = (props) => {
+const defaultScene = { render: () => { } }
+
+const Canvas = ({ scene = defaultScene, showFrame = false }) => {
 
   const canvas = useRef()
+  const container = useRef()
 
   useEffect(() => {
     const dpr = window.devicePixelRatio
-    canvas.current.width = window.innerWidth * dpr
-    canvas.current.height = window.innerHeight * dpr
+    canvas.current.width = container.current.offsetWidth * dpr
+    canvas.current.height = container.current.offsetHeight * dpr
     const ctx = canvas.current.getContext('2d')
 
     ctx.scale(dpr, dpr)
@@ -29,7 +32,7 @@ const Canvas = (props) => {
     clear(ctx)
     setTimeout(
       () =>
-        props.render(
+        scene.render(
           ctx,
           canvas.current.width,
           canvas.current.height
@@ -40,11 +43,11 @@ const Canvas = (props) => {
 
   return (
     <UserConsumer>
-      {props => 
-          <div className={props.frame ? 'frame' : ''}>
-            <canvas ref={canvas} className="main-canvas" />
-          </div>
-    }
+      {props =>
+        <div ref={container} className={showFrame ? 'frame' : 'no-frame'}>
+          <canvas ref={canvas} className="main-canvas" />
+        </div>
+      }
     </UserConsumer>
   )
 }

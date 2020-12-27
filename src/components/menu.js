@@ -4,20 +4,17 @@ import {
   ButtonDropdown,
   DropdownToggle,
   DropdownMenu,
-  DropdownItem
+  DropdownItem,
 } from 'reactstrap'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faSave, faCog } from '@fortawesome/free-solid-svg-icons'
+import { faSave, faCog, faSyncAlt } from '@fortawesome/free-solid-svg-icons'
 import allScenes from '../scenes/allScenes'
 import './menu.scss'
 
-const Presets = props => (
+const Presets = ({ onClick }) => (
   <>
-    {allScenes.map(scene => (
-      <DropdownItem
-        key={scene.name}
-        onClick={() => props.onClick(scene.renderer)}
-      >
+    {allScenes.map((scene) => (
+      <DropdownItem key={scene.name} onClick={() => onClick(scene.renderer)}>
         {scene.name}
       </DropdownItem>
     ))}
@@ -26,17 +23,25 @@ const Presets = props => (
 
 const Saved = () => <DropdownItem disabled>{'- -'}</DropdownItem>
 
-const Menu = props => {
+const Menu = ({ onSceneSelect, onSave, onPrefs, onRefresh }) => {
   const [isOpen, toggle] = useState(false)
 
   return (
     <div className="main-menu">
-      <Button className={'mx-1'} onClick={props.onPrefsClick}>
-        <FontAwesomeIcon icon={faCog} />
+      <Button className={'mx-1'} title="Preferences" onClick={onPrefs}>
+        <FontAwesomeIcon icon={faCog} /> Preferences
       </Button>
-      <Button className={'mx-1'}>
-        <FontAwesomeIcon icon={faSave} onClick={props.onSaveClick} />
+
+      <a href="#!" download="scene.png">
+        <Button className={'mx-1'} title="Save" onClick={onSave}>
+          <FontAwesomeIcon icon={faSave} /> Wallpaper
+        </Button>
+      </a>
+
+      <Button className={'mx-1'} title="Refresh Scene" onClick={onRefresh}>
+        <FontAwesomeIcon icon={faSyncAlt} /> Refresh
       </Button>
+
       <ButtonDropdown
         isOpen={isOpen}
         toggle={() => toggle(!isOpen)}
@@ -45,7 +50,7 @@ const Menu = props => {
         <DropdownToggle caret>Select a Scene</DropdownToggle>
         <DropdownMenu>
           <DropdownItem header>Preset Scenes</DropdownItem>
-          <Presets onClick={props.onClick} />
+          <Presets onClick={onSceneSelect} />
           <DropdownItem divider />
           <DropdownItem header>Your Saved Scenes</DropdownItem>
           <Saved />
