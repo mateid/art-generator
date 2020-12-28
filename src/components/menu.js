@@ -1,3 +1,5 @@
+import './menu.scss'
+
 import React, { useState } from 'react'
 import {
   Button,
@@ -9,7 +11,7 @@ import {
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSave, faCog, faSyncAlt } from '@fortawesome/free-solid-svg-icons'
 import allScenes from '../scenes/allScenes'
-import './menu.scss'
+import { useImageData } from '../contexts/imageContext'
 
 const Presets = ({ onClick }) => (
   <>
@@ -23,8 +25,9 @@ const Presets = ({ onClick }) => (
 
 const Saved = () => <DropdownItem disabled>{'- -'}</DropdownItem>
 
-const Menu = ({ onSceneSelect, onSave, onPrefs, onRefresh }) => {
+const Menu = ({ onSceneSelect, onPrefs, onRefresh }) => {
   const [isOpen, toggle] = useState(false)
+  const imageData = useImageData()
 
   return (
     <div className="main-menu">
@@ -32,8 +35,8 @@ const Menu = ({ onSceneSelect, onSave, onPrefs, onRefresh }) => {
         <FontAwesomeIcon icon={faCog} /> Preferences
       </Button>
 
-      <a href="#!" download="scene.png">
-        <Button className={'mx-1'} title="Save" onClick={onSave}>
+      <a href={imageData} download="scene.png">
+        <Button className={'mx-1'} title="Save">
           <FontAwesomeIcon icon={faSave} /> Wallpaper
         </Button>
       </a>
