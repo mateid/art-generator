@@ -12,6 +12,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSave, faCog, faSyncAlt } from '@fortawesome/free-solid-svg-icons'
 import allScenes from '../scenes/allScenes'
 import { useImageData } from '../contexts/imageContext'
+import UserPreferences from './preferences'
 
 const Presets = ({ onClick }) => (
   <>
@@ -25,13 +26,18 @@ const Presets = ({ onClick }) => (
 
 const Saved = () => <DropdownItem disabled>{'- -'}</DropdownItem>
 
-const Menu = ({ onSceneSelect, onPrefs, onRefresh }) => {
+const Menu = ({ preferences, onSceneSelect, onPrefs, onRefresh }) => {
   const [isOpen, toggle] = useState(false)
+  const [isPreferencesOpen, togglePreferences] = useState(false)
   const imageData = useImageData()
 
   return (
     <div className="main-menu">
-      <Button className={'mx-1'} title="Preferences" onClick={onPrefs}>
+      <Button
+        className={'mx-1'}
+        title="Preferences"
+        onClick={() => togglePreferences(true)}
+      >
         <FontAwesomeIcon icon={faCog} /> Preferences
       </Button>
 
@@ -59,6 +65,13 @@ const Menu = ({ onSceneSelect, onPrefs, onRefresh }) => {
           <Saved />
         </DropdownMenu>
       </ButtonDropdown>
+
+      <UserPreferences
+        preferences={preferences}
+        isOpen={isPreferencesOpen}
+        toggle={() => togglePreferences(false)}
+        onSave={onPrefs}
+      ></UserPreferences>
     </div>
   )
 }

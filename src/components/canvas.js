@@ -5,7 +5,7 @@ import { useSetImageData } from '../contexts/imageContext'
 
 const defaultScene = { render: () => { } }
 
-const Canvas = ({ scene = defaultScene, showFrame = false, setImageData }) => {
+const Canvas = ({ scene = defaultScene, showMat = false, setImageData }) => {
 
   const canvas = useRef()
   const container = useRef()
@@ -46,7 +46,7 @@ const Canvas = ({ scene = defaultScene, showFrame = false, setImageData }) => {
   return (
     <UserConsumer>
       {props =>
-        <div ref={container} className={showFrame ? 'frame' : 'no-frame'}>
+        <div ref={container} className={showMat ? 'frame' : 'no-frame'}>
           <canvas ref={canvas} className="main-canvas" />
         </div>
       }
