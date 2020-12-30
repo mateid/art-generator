@@ -20,7 +20,7 @@ const UserPreferences = ({ preferences, isOpen, toggle, onSave }) => {
 
   return (
     <Modal isOpen={isOpen} toggle={toggle}>
-      <ModalHeader toggle={toggle}>Modal title</ModalHeader>
+      <ModalHeader toggle={toggle}>Preferences</ModalHeader>
       <ModalBody>
         <Form>
           <FormGroup check>
