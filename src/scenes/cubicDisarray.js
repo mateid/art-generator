@@ -9,15 +9,15 @@ export default class CubicDisarray {
 
   render = (ctx, width, height) => {
     ctx.lineCap = 'square'
-    ctx.lineWidth = 1
+    ctx.lineWidth = 5
   
     const randomDisplacement = 15
     const rotateMultiplier = 20
     const offset = 10
-    const squareSize = 25
+    const squareSize = 100
   
-    for (let i = squareSize; i <= width - squareSize; i += squareSize) {
-      for (let j = squareSize; j <= height - squareSize; j += squareSize) {
+    for (let i = squareSize; i < width - squareSize; i += squareSize) {
+      for (let j = squareSize; j < height - squareSize; j += squareSize) {
         let plusOrMinus = Math.random() < 0.5 ? -1 : 1
         const rotateAmt =
           (((j / height) * Math.PI) / 180) *
