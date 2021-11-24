@@ -2,6 +2,7 @@ import * as scenes from './index'
 
 export default [
   { name: 'Cubic Disarray', renderer: new scenes.cubicDisarray() },
+  { name: 'Cubic Disarray Colored', renderer: new scenes.cubicDisarrayColored() },
   { name: 'Tiled Lines', renderer: new scenes.tiledLines() },
   { name: 'Random Circles', renderer: new scenes.randomCircles() },
   { name: 'Random Clustered Circles', renderer: new scenes.randomClusteredCircles() },
